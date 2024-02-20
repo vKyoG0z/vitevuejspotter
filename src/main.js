@@ -6,4 +6,4 @@ import router from './router'; // Importez le fichier de configuration du routeu
 
 createApp(App).use(router).mount('#app');
 
-createApp(App).mount('#app')
+

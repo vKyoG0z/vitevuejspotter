@@ -1,11 +1,11 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import HelloWorld from './components/HelloWorld.vue';
+import Accueil from './components/accueil.vue'; // Importez le composant Accueil.vue
 
 const routes = [
   {
     path: '/',
-    name: 'HelloWorld',
-    component: HelloWorld
+    name: 'Accueil',
+    component: Accueil // Utilisez le composant Accueil pour la route /
   }
 ];
 
