@@ -1,11 +1,14 @@
 <template>
   <div>
-    <h1>Test</h1>
+    <h1>Potions</h1>
     <div v-for="item in list" :key="item.id">
       <a :href="item.attributes.wiki">
         <img :src="item.attributes.image" alt="Image de la potion" />
       </a>
-      <p>{{ item.attributes.name }} <br> ingrédient : {{ item.attributes.ingredients }}</p>
+      <p>{{ item.attributes.name }} <br>
+         <span>ingrédient : </span>{{ item.attributes.ingredients }}<br>
+         <span>effect : </span>{{ item.attributes.effect }}
+        </p>
     </div>
   </div>
 </template>
@@ -40,5 +43,14 @@ export default {
     transform: translate(-50%, -50%);
     color: white;
     text-align: center;
+  }
+  h1{
+    color: aliceblue;
+  }
+  p{
+    color: white;
+  }
+  span{
+    font-size: 25px;
   }
   </style>
