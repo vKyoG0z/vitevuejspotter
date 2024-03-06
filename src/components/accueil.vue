@@ -1,5 +1,7 @@
 <template>
-  <!-- Contenu de la page d'accueil -->
+      <div class="container">
+      <h1>Encyclopédie Harry Potter</h1>
+    </div>
 </template>
 
 <style>
