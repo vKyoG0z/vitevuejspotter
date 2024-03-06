@@ -1,9 +1,37 @@
 <template>
-    <div class="container">
-      <h1>Potions page</h1>
+  <div>
+    <h1>Test</h1>
+    <div v-for="item in list" :key="item.id">
+      <a :href="item.attributes.wiki">
+        <img :src="item.attributes.image" alt="Image de la potion" />
+      </a>
+      <p>{{ item.attributes.name }} <br> ingrédient : {{ item.attributes.ingredients }}</p>
     </div>
-  </template>
-  
+  </div>
+</template>
+
+<script>
+import axios from "axios"
+
+export default {
+  name: "App",
+  data() {
+    return {
+      list: []
+    }
+  },
+  async mounted() {
+    try {
+      let result = await axios.get("https://api.potterdb.com/v1/potions");
+      console.warn(result.data.data)
+      this.list = result.data.data
+    } catch (error) {
+      console.error("Une erreur s'est produite :", error)
+    }
+  }
+}
+</script>
+
   <style>
   .container {
     position: absolute;
