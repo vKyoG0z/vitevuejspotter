@@ -5,12 +5,13 @@
       <a :href="item.attributes.wiki">
         <img :src="item.attributes.cover" alt="Book image" />
       </a>
+      
       <p>{{ item.attributes.name }} <br>
          <span>Title: </span>{{ item.attributes.title }}<br><br>
          <span>Author : </span>{{ item.attributes.author }}<br><br>
          <span>Release data: </span>{{ item.attributes.release_date }}<br><br>
          <span>Summary: </span><br><br>{{ item.attributes.summary }}<br><br>
-         <span>Number of pages : </span>{{ item.attributes.pages }}
+         <span>Number of pages : </span>{{ item.attributes.pages }}<br><br><br><p>----------------------------------------------------------------------------------</p><br><br><br>
         </p>
     </div>
   </div>

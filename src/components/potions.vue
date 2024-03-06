@@ -1,11 +1,14 @@
 <template>
   <div>
-    <h1>Potions Page</h1>
+    <h1>Potions page</h1>
     <div v-for="item in list" :key="item.id">
       <a :href="item.attributes.wiki">
         <img :src="item.attributes.image" alt="Image de la potion" />
       </a>
-      <p>{{ item.attributes.name }} <br> ingrédient : {{ item.attributes.ingredients }}</p>
+      <p>{{ item.attributes.name }} <br>
+         <span>Ingredients : </span>{{ item.attributes.ingredients }}<br>
+         <span>Effects : </span>{{ item.attributes.effect }}
+        </p>
     </div>
   </div>
 </template>
@@ -26,7 +29,7 @@ export default {
       console.warn(result.data.data)
       this.list = result.data.data
     } catch (error) {
-      console.error("Une erreur s'est produite :", error)
+      console.error("error :", error)
     }
   }
 }
@@ -49,5 +52,11 @@ export default {
   h1{
     color:white;
   }
-  
+
+span{
+  font-size: 20px;
+}
+
   </style>
+
+  

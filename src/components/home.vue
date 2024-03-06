@@ -1,6 +1,6 @@
 <template>
       <div class="container">
-      <h1>Harry Potter</h1>
+      <h1>Harry Potter Encyclopedia</h1>
     </div>
 </template>
 
@@ -12,4 +12,5 @@ body {
   margin: 0;
   padding: 0;
 }
+
 </style>
