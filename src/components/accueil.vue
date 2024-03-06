@@ -21,13 +21,13 @@ body {
   position: fixed;
   top: 0;
   left: 0;
-  width: 98%;
+  width: 100%;
   color:white;
   background-color: black; 
 
   display: flex;
-  justify-content: space-between;
-  padding: 12px 20px;
+  justify-content: space-around;
+  padding: 15px 20px;
   
 }
 
@@ -35,5 +35,13 @@ body {
   margin: 0;
   padding: 0;
   font-size: 18px;
+  font-family: cursive, sans-serif; /* Utilisation de la police "Cursive" avec une police de secours sans-serif */
+  transition: transform 1.0s; /* Ajoute une transition fluide */
 }
+
+.navigation h1:hover {
+  transform: scale(1.5); /* Zoom sur le texte au survol */
+}
+
+
 </style>
