@@ -3,7 +3,7 @@
       <div class="navigation">
         <router-link to="/">Home</router-link>
         <router-link to="/potions">Potions</router-link>
-        <router-link to="/spells">Speels</router-link>
+        <router-link to="/spells">Spells</router-link>
         <router-link to="/books">Books</router-link>
         <router-link to="/characters">Characters</router-link>
       </div>

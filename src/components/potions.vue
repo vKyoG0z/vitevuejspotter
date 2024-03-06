@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Test</h1>
+    <h1>Potions Page</h1>
     <div v-for="item in list" :key="item.id">
       <a :href="item.attributes.wiki">
         <img :src="item.attributes.image" alt="Image de la potion" />
@@ -41,4 +41,13 @@ export default {
     color: white;
     text-align: center;
   }
+
+  p{
+    color:white;
+  }
+
+  h1{
+    color:white;
+  }
+  
   </style>
