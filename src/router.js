@@ -1,9 +1,9 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import Accueil from './components/accueil.vue'; // Importez le composant Accueil.vue
+import Home from './components/home.vue'; // Importez le composant Accueil.vue
 import Potions from './components/potions.vue';
-import Sorts from './components/sorts.vue';
-import Livres from './components/livres.vue';
-import Personnages from './components/personnages.vue';
+import Spells from './components/spells.vue';
+import Books from './components/books.vue';
+import Characters from './components/characters.vue';
 import Layout from './components/layout.vue';
 
 
@@ -13,9 +13,9 @@ const routes = [
     component: Layout, // Utilisez le layout pour la route /
     children: [
       {
-        path: '', // Chemin vide pour la page Accueil
-        name: 'Accueil',
-        component: Accueil
+        path: '/', // Chemin vide pour la page Accueil
+        name: 'Home',
+        component: Home
       },
       {
         path: '/potions',
@@ -23,19 +23,19 @@ const routes = [
         component: Potions
       },
       {
-        path: '/sorts',
-        name: 'Sorts',
-        component: Sorts
+        path: '/spells',
+        name: 'Spells',
+        component: Spells
       },
       {
-        path: '/livres',
-        name: 'Livres',
-        component: Livres
+        path: '/books',
+        name: 'Books',
+        component: Books
       },
       {
-        path: '/personnages',
-        name: 'Personnages',
-        component: Personnages
+        path: '/characters',
+        name: 'Characters',
+        component: Characters
       }
     ]
   }

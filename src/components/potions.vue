@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-      <h1>Voici la page des potions</h1>
+      <h1>Potions page</h1>
     </div>
   </template>
   

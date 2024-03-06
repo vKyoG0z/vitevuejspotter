@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-      <h1>Voici la page des personnages</h1>
+      <h1>Characters page</h1>
     </div>
   </template>
   

@@ -1,6 +1,6 @@
 <template>
       <div class="container">
-      <h1>Encyclopédie Harry Potter</h1>
+      <h1>Harry Potter</h1>
     </div>
 </template>
 

@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-      <h1>Voici la page des sorts</h1>
+      <h1>Book page</h1>
     </div>
   </template>
   
@@ -14,4 +14,3 @@
     text-align: center;
   }
   </style>
-  

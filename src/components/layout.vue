@@ -1,11 +1,11 @@
 <template>
     <div>
       <div class="navigation">
-        <router-link to="/">Accueil</router-link>
+        <router-link to="/">Home</router-link>
         <router-link to="/potions">Potions</router-link>
-        <router-link to="/sorts">Sorts</router-link>
-        <router-link to="/livres">Livres</router-link>
-        <router-link to="/personnages">Personnages</router-link>
+        <router-link to="/spells">Speels</router-link>
+        <router-link to="/books">Books</router-link>
+        <router-link to="/characters">Characters</router-link>
       </div>
       <router-view></router-view> <!-- C'est ici que le contenu de chaque page sera affiché -->
     </div>
@@ -42,7 +42,7 @@
   }
   
   .navigation a:hover {
-    transform: scale(1.5);
+    transform: scale(1.7);
   }
   </style>
   
