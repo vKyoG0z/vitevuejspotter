@@ -1,7 +1,11 @@
 <template>
   <div>
+    <div class="search-container">
+      <input type="text" v-model="searchQuery" placeholder="Search potions...">
+     
+    </div>
     <h1>Potions page</h1>
-    <div v-for="item in list" :key="item.id">
+    <div v-for="item in filteredList" :key="item.id">
       <a :href="item.attributes.wiki">
         <img :src="item.attributes.image" alt="Image de la potion" />
       </a>
@@ -17,46 +21,72 @@
 import axios from "axios"
 
 export default {
-  name: "App",
+  name: "Potions",
   data() {
     return {
-      list: []
+      list: [],
+      searchQuery: ""
     }
   },
   async mounted() {
     try {
       let result = await axios.get("https://api.potterdb.com/v1/potions");
-      console.warn(result.data.data)
-      this.list = result.data.data
+      this.list = result.data.data;
     } catch (error) {
       console.error("error :", error)
+    }
+  },
+  computed: {
+    filteredList() {
+      return this.list.filter(item => {
+        return item.attributes.name.toLowerCase().includes(this.searchQuery.toLowerCase());
+      });
+    }
+  },
+  methods: {
+    async searchPotions() {
+      try {
+        let result = await axios.get(`https://api.potterdb.com/v1/potions?filter[name_cont]=${this.searchQuery}`);
+        this.list = result.data.data;
+      } catch (error) {
+        console.error("error :", error)
+      }
     }
   }
 }
 </script>
 
-  <style>
-  .container {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: white;
-    text-align: center;
-  }
+<style>
+.container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  text-align: center;
+}
 
-  p{
-    color:white;
-  }
+p {
+  color: white;
+}
 
-  h1{
-    color:white;
-  }
+h1 {
+  color: white;
+}
 
-span{
+span {
   font-size: 20px;
 }
 
-  </style>
+.search-container {
+  margin-bottom: 20px;
+}
 
-  
+.search-container input {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+
+</style>
