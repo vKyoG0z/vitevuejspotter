@@ -7,7 +7,7 @@
     <h1>Potions page</h1>
     <div v-for="item in filteredList" :key="item.id">
       <a :href="item.attributes.wiki">
-        <img :src="item.attributes.image" alt="Image de la potion" />
+        <img :src="!item.attributes.image ? '/images/shapepotion1.png' : item.attributes.image" alt="ImagePotion" />
       </a>
       <p>{{ item.attributes.name }} <br>
          <span>Ingredients : </span>{{ item.attributes.ingredients }}<br>
