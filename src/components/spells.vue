@@ -14,6 +14,8 @@
          <span>Effect : </span>{{ item.attributes.effect }}<br><br><br>----------------------------------------------------------------------------------<br><br><br>
       </p>
     </div>
+    <button @click="previousPage" :disabled="currentPage === 1">Previous</button>
+    <button @click="nextPage" :disabled="currentPage === totalPages">Next</button>
   </div>
 </template>
 
@@ -25,35 +27,60 @@ export default {
   data() {
     return {
       list: [],
+      currentPage: 1,
+      itemsPerPage: 10,
       searchQuery: ""
+    }
+  },
+  computed:{
+  filteredList() {
+      return this.list.filter(item => {
+        return item.attributes.name.toLowerCase().includes(this.searchQuery.toLowerCase());
+      });
+    },
+    displayedList() {
+      const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+      const endIndex = startIndex + this.itemsPerPage;
+      return this.filteredList.slice(startIndex, endIndex);
+    },
+    totalPages() {
+      return 32;
+       //Math.ceil(this.filteredList.length / this.itemsPerPage);
     }
   },
   async mounted() {
     try {
-      let result = await axios.get("https://api.potterdb.com/v1/spells");
+      let result = await axios.get('https://api.potterdb.com/v1/spells?page[size]=' + this.itemsPerPage + '&page[number]=' + this.currentPage);
+      console.warn(result.data.data);
       this.list = result.data.data;
     } catch (error) {
-      console.error("Une erreur s'est produite :", error)
-    }
-  },
-  computed: {
-    filteredList() {
-      return this.list.filter(item => {
-        return item.attributes.name.toLowerCase().includes(this.searchQuery.toLowerCase());
-      });
+      console.error("An error occurred:", error);
     }
   },
   methods: {
-    async searchSpells() {
-      try {
-        let result = await axios.get(`https://api.potterdb.com/v1/spells?filter[name_cont]=${this.searchQuery}`);
-        this.list = result.data.data;
-      } catch (error) {
-        console.error("Une erreur s'est produite :", error)
+    fetchData() {
+      axios.get('https://api.potterdb.com/v1/spells?page[size]=' + this.itemsPerPage + '&page[number]=' + this.currentPage)
+        .then(response => {
+          this.list = response.data.data;
+        })
+        .catch(error => {
+          console.error('Erreur lors de la requête API :', error);
+        });
+    },
+    previousPage() {
+      if (this.currentPage > 1) {
+        this.currentPage--;
+        this.fetchData();
+      }
+    },
+    nextPage() {
+      if (this.currentPage < this.totalPages) {
+        this.currentPage++;
+        this.fetchData();
       }
     }
   }
-}
+};
 </script>
 
 <style>
