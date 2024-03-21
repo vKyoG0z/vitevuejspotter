@@ -25,6 +25,7 @@
   </div>
 </template>
 
+
 <script>
 import axios from "axios";
 
@@ -34,7 +35,7 @@ export default {
     return {
       list: [],
       currentPage: 1,
-      itemsPerPage: 10, // Nombre d'éléments par page
+      itemsPerPage: 20,
       searchQuery: ""
     };
   },
@@ -50,39 +51,44 @@ export default {
       return this.filteredList.slice(startIndex, endIndex);
     },
     totalPages() {
-      return Math.ceil(this.filteredList.length / this.itemsPerPage);
-    },
+      return 478;
+       //Math.ceil(this.filteredList.length / this.itemsPerPage);
+    }
   },
   async mounted() {
     try {
-      let result = await axios.get("https://api.potterdb.com/v1/characters");
-      console.warn(result.data.data)
+      let result = await axios.get('https://api.potterdb.com/v1/characters?page[size]=' + this.itemsPerPage + '&page[number]=' + this.currentPage);
+      console.warn(result.data.data);
       this.list = result.data.data;
     } catch (error) {
       console.error("An error occurred:", error);
     }
   },
   methods: {
-    filterCharacters() {
-      // No need for async/await here as it's just filtering the existing list
-      // This method will be triggered each time the search query changes
-      // and will automatically update the filteredList computed property
-      // based on the search query
+    fetchData() {
+      axios.get('https://api.potterdb.com/v1/characters?page[size]=' + this.itemsPerPage + '&page[number]=' + this.currentPage)
+        .then(response => {
+          this.list = response.data.data;
+        })
+        .catch(error => {
+          console.error('Erreur lors de la requête API :', error);
+        });
     },
     previousPage() {
       if (this.currentPage > 1) {
         this.currentPage--;
+        this.fetchData();
       }
     },
     nextPage() {
       if (this.currentPage < this.totalPages) {
         this.currentPage++;
+        this.fetchData();
       }
-    },
-  },
+    }
+  }
 };
 </script>
-
 <style>
 .container {
   position: absolute;
