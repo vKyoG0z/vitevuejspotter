@@ -14,6 +14,8 @@
          <span>Effects : </span>{{ item.attributes.effect }}
         </p>
     </div>
+    <button @click="previousPage" :disabled="currentPage === 1">Previous</button>
+    <button @click="nextPage" :disabled="currentPage === totalPages">Next</button>
   </div>
 </template>
 
@@ -25,15 +27,9 @@ export default {
   data() {
     return {
       list: [],
+      currentPage: 1,
+      itemsPerPage: 10,
       searchQuery: ""
-    }
-  },
-  async mounted() {
-    try {
-      let result = await axios.get("https://api.potterdb.com/v1/potions");
-      this.list = result.data.data;
-    } catch (error) {
-      console.error("error :", error)
     }
   },
   computed: {
@@ -41,19 +37,58 @@ export default {
       return this.list.filter(item => {
         return item.attributes.name.toLowerCase().includes(this.searchQuery.toLowerCase());
       });
+    },
+    displayedList() {
+      const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+      const endIndex = startIndex + this.itemsPerPage;
+      return this.filteredList.slice(startIndex, endIndex);
+    },
+    totalPages() {
+      return 17;
+       //Math.ceil(this.filteredList.length / this.itemsPerPage);
+    }
+  },
+  async mounted() {
+    try {
+      let result = await axios.get('https://api.potterdb.com/v1/potions?page[size]=' + this.itemsPerPage + '&page[number]=' + this.currentPage);
+      console.warn(result.data.data);
+      this.list = result.data.data;
+    } catch (error) {
+      console.error("An error occurred:", error);
     }
   },
   methods: {
-    async searchPotions() {
-      try {
-        let result = await axios.get(`https://api.potterdb.com/v1/potions?filter[name_cont]=${this.searchQuery}`);
-        this.list = result.data.data;
-      } catch (error) {
-        console.error("error :", error)
+    fetchData() {
+      axios.get('https://api.potterdb.com/v1/potions?page[size]=' + this.itemsPerPage + '&page[number]=' + this.currentPage)
+        .then(response => {
+          this.list = response.data.data;
+        })
+        .catch(error => {
+          console.error('Erreur lors de la requête API :', error);
+        });
+    },
+    previousPage() {
+      if (this.currentPage > 1) {
+        this.currentPage--;
+        this.fetchData();
+        this.scrollToTop();
+      }
+    },
+    scrollToTop() {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      })
+    },
+    nextPage() {
+      if (this.currentPage < this.totalPages) {
+        this.currentPage++;
+        this.fetchData();
+        this.scrollToTop();
       }
     }
   }
-}
+};
 </script>
 
 <style>
