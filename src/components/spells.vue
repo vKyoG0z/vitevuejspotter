@@ -11,7 +11,7 @@
       <br>
       <p>{{ item.attributes.name }}<br>
         <span>Category : </span>{{ item.attributes.category }}<br>
-         <span>Effect : </span>{{ item.attributes.effect }}<br><br><br>----------------------------------------------------------------------------------<br><br><br>
+         <span>Effect : </span>{{ item.attributes.effect }}<br><br><br><br>
       </p>
     </div>
     <button @click="previousPage" :disabled="currentPage === 1">Previous</button>

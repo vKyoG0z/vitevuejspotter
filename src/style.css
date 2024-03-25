@@ -90,8 +90,13 @@ button:focus-visible {
 }
 
 h1 {
-  color: aliceblue;
+  font-size: 3.5em; /* Taille de la police plus grande */
+  font-family: 'Harry P', sans-serif; /* Utilisation d'une police Harry Potter */
+  color: rgb(223, 239, 255); /* Couleur dorée */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4); /* Ombre portée pour un effet de profondeur */
+  margin-bottom: 20px; /* Marge en bas pour l'espace */
 }
+
 
 p {
   color: white;
@@ -101,4 +106,47 @@ span {
   font-size: 20px;
 }
 
-/* Ajoutez d'autres styles ici */
+
+/* styles.css */
+
+.search-container {
+  position: relative;
+  margin-bottom: 20px;
+  background-color: #222;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.search-container input {
+  padding:10px;
+  border: none;
+  border-bottom: 2px solid #444;
+  background-color: transparent;
+  color: #fff;
+  font-size: 18px;
+  width: 95%;
+}
+
+/* Styles des boutons */
+button {
+  background-color: #7f5a3f; /* Couleur du fond des boutons */
+  color: white; /* Couleur du texte */
+  border: none; /* Supprime la bordure */
+  padding: 10px 20px; /* Ajoute de l'espace autour du texte */
+  border-radius: 5px; /* Coins arrondis */
+  cursor: pointer; /* Curseur de la souris */
+  font-size: 16px; /* Taille du texte */
+  margin-right: 10px; /* Marge à droite */
+  margin-left: 10px;
+}
+
+/* Style de l'input */
+input[type="int"] {
+  padding: 10px; /* Ajoute de l'espace autour du texte */
+  border: 2px solid #7f5a3f; /* Bordure */
+  border-radius: 5px; /* Coins arrondis */
+  font-size: 16px; /* Taille du texte */
+}
+
+

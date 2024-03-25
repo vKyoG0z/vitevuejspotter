@@ -13,6 +13,7 @@
          <span>Ingredients : </span>{{ item.attributes.ingredients }}<br>
          <span>Effects : </span>{{ item.attributes.effect }}
         </p>
+        <br><br><br><br>
     </div>
     <button @click="previousPage" :disabled="currentPage === 1">Previous</button>
     <input type="int" v-model="currentPage"@keyup.enter="UpdatePage">

@@ -14,7 +14,7 @@
          <span>Author : </span>{{ item.attributes.author }}<br><br>
          <span>Release date: </span>{{ item.attributes.release_date }}<br><br>
          <span>Summary: </span><br><br>{{ item.attributes.summary }}<br><br>
-         <span>Number of pages : </span>{{ item.attributes.pages }}<br><br><br><p>----------------------------------------------------------------------------------</p><br><br><br>
+         <span>Number of pages : </span>{{ item.attributes.pages }}<br><br><br><br>
         </p>
     </div>
   </div>
