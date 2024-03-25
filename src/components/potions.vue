@@ -15,6 +15,7 @@
         </p>
     </div>
     <button @click="previousPage" :disabled="currentPage === 1">Previous</button>
+    <input type="int" v-model="currentPage"@keyup.enter="UpdatePage">
     <button @click="nextPage" :disabled="currentPage === totalPages">Next</button>
   </div>
 </template>
@@ -68,16 +69,30 @@ export default {
           console.error('Erreur lors de la requête API :', error);
         });
     },
+    scrollToTop() {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth" // Ajoutez cette ligne pour une animation fluide
+      });
+    },
     previousPage() {
       if (this.currentPage > 1) {
         this.currentPage--;
         this.fetchData();
+        this.scrollToTop();
       }
     },
     nextPage() {
       if (this.currentPage < this.totalPages) {
         this.currentPage++;
         this.fetchData();
+        this.scrollToTop();
+      }
+    },
+    UpdatePage(){
+      if(this.currentPage<this.totalPages1 && this.currentPage >0){
+        this.fetchData();
+        this.scrollToTop();
       }
     }
   }
