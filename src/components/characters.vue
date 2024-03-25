@@ -34,6 +34,7 @@ export default {
   data() {
     return {
       list: [],
+      totalPages1:0,
       currentPage: 1,
       itemsPerPage: 10,
       searchQuery: ""
@@ -51,8 +52,8 @@ export default {
       return this.filteredList.slice(startIndex, endIndex);
     },
     totalPages() {
-      return 478;
-       //Math.ceil(this.filteredList.length / this.itemsPerPage);
+      
+      return this.totalPages1;
     }
   },
   async mounted() {
@@ -60,6 +61,7 @@ export default {
       let result = await axios.get('https://api.potterdb.com/v1/characters?page[size]=' + this.itemsPerPage + '&page[number]=' + this.currentPage);
       console.warn(result.data.data);
       this.list = result.data.data;
+      this.totalPages1 = result.data.meta.pagination.last;
     } catch (error) {
       console.error("An error occurred:", error);
     }
