@@ -7,7 +7,7 @@
     <h1>Potions page</h1>
     <div v-for="item in filteredList" :key="item.id">
       <a :href="item.attributes.wiki">
-        <img :src="item.attributes.image" alt="Image de la potion" />
+        <img :src="!item.attributes.image ? '/images/shapepotion1.png' : item.attributes.image" alt="ImagePotion" />
       </a>
       <p>{{ item.attributes.name }} <br>
          <span>Ingredients : </span>{{ item.attributes.ingredients }}<br>
@@ -71,20 +71,12 @@ export default {
       if (this.currentPage > 1) {
         this.currentPage--;
         this.fetchData();
-        this.scrollToTop();
       }
-    },
-    scrollToTop() {
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-      })
     },
     nextPage() {
       if (this.currentPage < this.totalPages) {
         this.currentPage++;
         this.fetchData();
-        this.scrollToTop();
       }
     }
   }

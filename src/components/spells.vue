@@ -71,20 +71,12 @@ export default {
       if (this.currentPage > 1) {
         this.currentPage--;
         this.fetchData();
-        this.scrollToTop();
       }
-    },
-    scrollToTop() {
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-      })
     },
     nextPage() {
       if (this.currentPage < this.totalPages) {
         this.currentPage++;
         this.fetchData();
-        this.scrollToTop();
       }
     }
   }

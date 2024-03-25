@@ -6,7 +6,7 @@
     <h1>Characters</h1>
     <div v-for="item in filteredList" :key="item.id">
       <a :href="item.attributes.wiki">
-        <img :src="item.attributes.image !== 'null' && item.attributes.image !== '' ? item.attributes.image : '/workspace/vitevuejspotter/images/pochoir-chapeau-sorciere.png'" alt="ImageCharacter" />
+        <img :src="!item.attributes.image ? '/images/pochoir-chapeau-sorciere.png' : item.attributes.image" alt="ImageCharacter" />
       </a>
       <p>
         {{ item.attributes.name }} <br>
@@ -78,20 +78,12 @@ export default {
       if (this.currentPage > 1) {
         this.currentPage--;
         this.fetchData();
-        this.scrollToTop();
       }
-    },
-    scrollToTop() {
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-      })
     },
     nextPage() {
       if (this.currentPage < this.totalPages) {
         this.currentPage++;
         this.fetchData();
-        this.scrollToTop();
       }
     }
   }
