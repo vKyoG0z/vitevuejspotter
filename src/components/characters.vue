@@ -21,6 +21,7 @@
     </div>
     <!-- Boutons de pagination -->
     <button @click="previousPage" :disabled="currentPage === 1">Previous</button>
+    <input type="int" v-model="currentPage"@keyup.enter="UpdatePage">
     <button @click="nextPage" :disabled="currentPage === totalPages">Next</button>
   </div>
 </template>
@@ -77,12 +78,11 @@ export default {
         });
     },
     scrollToTop() {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth" // Ajoutez cette ligne pour une animation fluide
-    });
-  },
-    
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth" // Ajoutez cette ligne pour une animation fluide
+      });
+    },
     previousPage() {
       if (this.currentPage > 1) {
         this.currentPage--;
@@ -93,6 +93,12 @@ export default {
     nextPage() {
       if (this.currentPage < this.totalPages) {
         this.currentPage++;
+        this.fetchData();
+        this.scrollToTop();
+      }
+    },
+    UpdatePage(){
+      if(this.currentPage<this.totalPages1 && this.currentPage >0){
         this.fetchData();
         this.scrollToTop();
       }
