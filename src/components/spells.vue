@@ -100,35 +100,3 @@ export default {
 };
 </script>
 
-<style>
-.container {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: white;
-  text-align: center;
-}
-
-h1 {
-  color: aliceblue;
-}
-
-p {
-  color: white;
-}
-
-span {
-  font-size: 20px;
-}
-
-.search-container {
-  margin-bottom: 20px;
-}
-
-.search-container input {
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-</style>
